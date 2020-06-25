@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>.</title>
+	<link rel="stylesheet" href="css.css">
+</head>
+<body>
+	<div class="parent" id="app">
+
+		
+		<div class="place place-parent" :style="'filter: blur('+showModal*5+'px);'">
+			<div v-for="i in 144" :class="'cell div'+i">
+				<img :style="style" v-if="position==i" style="margin-top: 5px;" src="photos/frog.svg" width="50px">
+				<img v-if="steps.indexOf(i)!=-1" style="margin-top: 15px;" src="photos/steps.png" width="30px">
+				<img v-if="flies.indexOf(i)!=-1" style="margin-top: 15px;" src="photos/fly.png" width="30px">
+			</div>
+		</div>
+
+		<div class="buttons" :style="'filter: blur('+showModal*5+'px);'">
+			<div class="but-cell state" :style="'background-color: '+stateBackground">
+				<div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%)"><b>Состояние:	</b>{{state}}</div>
+			</div> 
+			<div class="but-cell pusk" @click="run">Запуск</div> 
+			<div class="but-cell help" @click="showModal = !showModal">Правила игры</div> 
+			<div class="but-cell stepsCount">Кол-во шагов: {{stepsCount}}</div> 
+			<div class="but-cell fliesCount">Мух съедено: {{fliesCount-flies.length}}/{{fliesCount}}</div> 
+			<div class="but-cell lvl">Уровень: {{level}}</div> 
+		</div>
+
+		<div class="ide" :style="'filter: blur('+showModal*5+'px);'">
+			<div class="mini-buttons">
+				<div @click="left_btn" class="mini-button left">⟲</div>
+				<div @click="go_btn" class="mini-button go">↑</div>
+				<div @click="right_btn" class="mini-button right">⟳</div>
+			</div>
+			<textarea v-model="code" placeholder="Место для твоего кода" autofocus rows="10" cols="45" name="text"></textarea>
+		</div>
+
+
+
+
+		<transition name="slide" appear>
+			<div class="modal" v-if="showModal">
+				<div style="cursor: pointer; position: absolute; top: -10px; right: 10px; color: orangered; font-size: 60px;" @click="showModal = false">×</div>
+				<h1 style="color: rgb(126, 92, 0);">Правила игры:</h1>
+				<p style="color: rgb(126, 92, 0);">Всё очень просто! Тебе нужно будет помочь лягушке пообедать! <br>Эта лягушка питается летающими над прудом мухами, добраться до которых можно лишь одним способом - прыгая по кувшинкам.</p>
+				
+				<p style="color: rgb(126, 92, 0);">Движение лягушки описывается через язык программирования 'FROG',<br> в котором есть только две функции:<br>
+					<b style="font-size: x-large; color: rgb(204, 50, 50);">turn left/right</b> повернуть налево/направо
+					<br>и<br>
+					<b style="font-size: x-large; color: rgb(204, 50, 50);">go &laquo;число&raquo;</b> пропрыгать &laquo;число&raquo; кувшинок
+					<br>
+				</p>
+				<p style="color: rgb(126, 92, 0);">
+					Для упрощения написания кода можно воспользоваться стрелочками над текстовым полем<br>
+					Для запуска достаточно просто нажать кнопку 'Запуск'<br>
+					Состояние обработчика кода в голове лягушки описано в поле 'Состояние'
+				</p>
+			</div>
+		</transition>
+
+	</div>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script src="js.js"></script>
+</body>
+</html>
