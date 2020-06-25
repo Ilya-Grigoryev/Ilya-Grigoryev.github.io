@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>.</title>
+    <style type="text/css">
+	
+		body{
+			background-color: khaki;
+		}
+		.parent { 
+			display: grid; 
+			grid-template-columns: repeat(6, 1fr);
+			grid-template-rows: repeat(5, 1fr);
+			grid-column-gap: 20px;
+			grid-row-gap: 20px; 
+			height: 773px;
+		}
+		.place{
+			grid-area: 1 / 1 / 6 / 5;
+			background-color: rgb(42, 197, 158);
+			outline: 5px solid rgba(165, 42, 42, 0.644);
+		}
+		.buttons{
+			grid-area: 1 / 5 / 2 / 7;
+			background-color: rgb(247, 234, 64);
+			outline: 5px solid rgba(165, 42, 42, 0.644);
+		} 
+		.ide {
+			grid-area: 2 / 5 / 6 / 7;
+			outline: 5px solid rgba(165, 42, 42, 0.644);
+			padding-right: 5px;
+			padding-bottom: 5px;
+			background-color: rgb(247, 234, 64);
+		}
+		textarea{
+			resize: none;
+			margin-top: 10px;
+			width: 100%;
+			height: 86%;
+			background-color: rgb(255, 253, 220);
+			font-size: xx-large;
+			font-style: unset;
+		}
+
+		.place-parent { 
+			display: grid; 
+			grid-template-columns: repeat(12, 1fr); 
+			grid-template-rows: repeat(12, 1fr); 
+			grid-column-gap: 5px;
+			grid-row-gap: 5px; 
+		}
+
+		.cell{
+			background-color: rgb(181, 255, 174); /*rgb(253, 161, 161);*/
+			
+			border-radius:30%; /* 15% */
+			text-align: center;
+		}
+
+		.div1 { grid-area: 1 / 1 / 2 / 2; } 
+		.div2 { grid-area: 1 / 2 / 2 / 3; } 
+		.div3 { grid-area: 1 / 3 / 2 / 4; } 
+		.div4 { grid-area: 1 / 4 / 2 / 5; } 
+		.div5 { grid-area: 1 / 5 / 2 / 6; } 
+		.div6 { grid-area: 1 / 6 / 2 / 7; } 
+		.div7 { grid-area: 1 / 7 / 2 / 8; } 
+		.div8 { grid-area: 1 / 8 / 2 / 9; } 
+		.div9 { grid-area: 1 / 9 / 2 / 10; } 
+		.div10 { grid-area: 1 / 10 / 2 / 11; } 
+		.div11 { grid-area: 1 / 11 / 2 / 12; } 
+		.div12 { grid-area: 1 / 12 / 2 / 13; } 
+		.div13 { grid-area: 2 / 1 / 3 / 2; } 
+		.div14 { grid-area: 2 / 2 / 3 / 3; } 
+		.div15 { grid-area: 2 / 3 / 3 / 4; } 
+		.div16 { grid-area: 2 / 4 / 3 / 5; } 
+		.div17 { grid-area: 2 / 5 / 3 / 6; } 
+		.div18 { grid-area: 2 / 6 / 3 / 7; } 
+		.div19 { grid-area: 2 / 7 / 3 / 8; } 
+		.div20 { grid-area: 2 / 8 / 3 / 9; } 
+		.div21 { grid-area: 2 / 9 / 3 / 10; } 
+		.div22 { grid-area: 2 / 10 / 3 / 11; } 
+		.div23 { grid-area: 2 / 11 / 3 / 12; } 
+		.div24 { grid-area: 2 / 12 / 3 / 13; } 
+		.div25 { grid-area: 3 / 1 / 4 / 2; } 
+		.div26 { grid-area: 3 / 2 / 4 / 3; } 
+		.div27 { grid-area: 3 / 3 / 4 / 4; } 
+		.div28 { grid-area: 3 / 4 / 4 / 5; } 
+		.div29 { grid-area: 3 / 5 / 4 / 6; } 
+		.div30 { grid-area: 3 / 6 / 4 / 7; } 
+		.div31 { grid-area: 3 / 7 / 4 / 8; } 
+		.div32 { grid-area: 3 / 8 / 4 / 9; } 
+		.div33 { grid-area: 3 / 9 / 4 / 10; } 
+		.div34 { grid-area: 3 / 10 / 4 / 11; } 
+		.div35 { grid-area: 3 / 11 / 4 / 12; } 
+		.div36 { grid-area: 3 / 12 / 4 / 13; } 
+		.div37 { grid-area: 4 / 1 / 5 / 2; } 
+		.div38 { grid-area: 4 / 2 / 5 / 3; } 
+		.div39 { grid-area: 4 / 3 / 5 / 4; } 
+		.div40 { grid-area: 4 / 4 / 5 / 5; } 
+		.div41 { grid-area: 4 / 5 / 5 / 6; } 
+		.div42 { grid-area: 4 / 6 / 5 / 7; } 
+		.div43 { grid-area: 4 / 7 / 5 / 8; } 
+		.div44 { grid-area: 4 / 8 / 5 / 9; } 
+		.div45 { grid-area: 4 / 9 / 5 / 10; } 
+		.div46 { grid-area: 4 / 10 / 5 / 11; } 
+		.div47 { grid-area: 4 / 11 / 5 / 12; } 
+		.div48 { grid-area: 4 / 12 / 5 / 13; } 
+		.div49 { grid-area: 5 / 1 / 6 / 2; } 
+		.div50 { grid-area: 5 / 2 / 6 / 3; } 
+		.div51 { grid-area: 5 / 3 / 6 / 4; } 
+		.div52 { grid-area: 5 / 4 / 6 / 5; } 
+		.div53 { grid-area: 5 / 5 / 6 / 6; } 
+		.div54 { grid-area: 5 / 6 / 6 / 7; } 
+		.div55 { grid-area: 5 / 7 / 6 / 8; } 
+		.div56 { grid-area: 5 / 8 / 6 / 9; } 
+		.div57 { grid-area: 5 / 9 / 6 / 10; } 
+		.div58 { grid-area: 5 / 10 / 6 / 11; } 
+		.div59 { grid-area: 5 / 11 / 6 / 12; } 
+		.div60 { grid-area: 5 / 12 / 6 / 13; } 
+		.div61 { grid-area: 6 / 1 / 7 / 2; } 
+		.div62 { grid-area: 6 / 2 / 7 / 3; } 
+		.div63 { grid-area: 6 / 3 / 7 / 4; } 
+		.div64 { grid-area: 6 / 4 / 7 / 5; } 
+		.div65 { grid-area: 6 / 5 / 7 / 6; } 
+		.div66 { grid-area: 6 / 6 / 7 / 7; } 
+		.div67 { grid-area: 6 / 7 / 7 / 8; } 
+		.div68 { grid-area: 6 / 8 / 7 / 9; } 
+		.div69 { grid-area: 6 / 9 / 7 / 10; } 
+		.div70 { grid-area: 6 / 10 / 7 / 11; } 
+		.div71 { grid-area: 6 / 11 / 7 / 12; } 
+		.div72 { grid-area: 6 / 12 / 7 / 13; } 
+		.div73 { grid-area: 7 / 1 / 8 / 2; } 
+		.div74 { grid-area: 7 / 2 / 8 / 3; } 
+		.div75 { grid-area: 7 / 3 / 8 / 4; } 
+		.div76 { grid-area: 7 / 4 / 8 / 5; } 
+		.div77 { grid-area: 7 / 5 / 8 / 6; } 
+		.div78 { grid-area: 7 / 6 / 8 / 7; } 
+		.div79 { grid-area: 7 / 7 / 8 / 8; } 
+		.div80 { grid-area: 7 / 8 / 8 / 9; } 
+		.div81 { grid-area: 7 / 9 / 8 / 10; } 
+		.div82 { grid-area: 7 / 10 / 8 / 11; } 
+		.div83 { grid-area: 7 / 11 / 8 / 12; } 
+		.div84 { grid-area: 7 / 12 / 8 / 13; } 
+		.div85 { grid-area: 8 / 1 / 9 / 2; } 
+		.div86 { grid-area: 8 / 2 / 9 / 3; } 
+		.div87 { grid-area: 8 / 3 / 9 / 4; } 
+		.div88 { grid-area: 8 / 4 / 9 / 5; } 
+		.div89 { grid-area: 8 / 5 / 9 / 6; } 
+		.div90 { grid-area: 8 / 6 / 9 / 7; } 
+		.div91 { grid-area: 8 / 7 / 9 / 8; } 
+		.div92 { grid-area: 8 / 8 / 9 / 9; } 
+		.div93 { grid-area: 8 / 9 / 9 / 10; } 
+		.div94 { grid-area: 8 / 10 / 9 / 11; } 
+		.div95 { grid-area: 8 / 11 / 9 / 12; } 
+		.div96 { grid-area: 8 / 12 / 9 / 13; } 
+		.div97 { grid-area: 9 / 1 / 10 / 2; } 
+		.div98 { grid-area: 9 / 2 / 10 / 3; } 
+		.div99 { grid-area: 9 / 3 / 10 / 4; } 
+		.div100 { grid-area: 9 / 4 / 10 / 5; } 
+		.div101 { grid-area: 9 / 5 / 10 / 6; } 
+		.div102 { grid-area: 9 / 6 / 10 / 7; } 
+		.div103 { grid-area: 9 / 7 / 10 / 8; } 
+		.div104 { grid-area: 9 / 8 / 10 / 9; } 
+		.div105 { grid-area: 9 / 9 / 10 / 10; } 
+		.div106 { grid-area: 9 / 10 / 10 / 11; } 
+		.div107 { grid-area: 9 / 11 / 10 / 12; } 
+		.div108 { grid-area: 9 / 12 / 10 / 13; } 
+		.div109 { grid-area: 10 / 1 / 11 / 2; } 
+		.div110 { grid-area: 10 / 2 / 11 / 3; } 
+		.div111 { grid-area: 10 / 3 / 11 / 4; } 
+		.div112 { grid-area: 10 / 4 / 11 / 5; } 
+		.div113 { grid-area: 10 / 5 / 11 / 6; } 
+		.div114 { grid-area: 10 / 6 / 11 / 7; } 
+		.div115 { grid-area: 10 / 7 / 11 / 8; } 
+		.div116 { grid-area: 10 / 8 / 11 / 9; } 
+		.div117 { grid-area: 10 / 9 / 11 / 10; } 
+		.div118 { grid-area: 10 / 10 / 11 / 11; } 
+		.div119 { grid-area: 10 / 11 / 11 / 12; } 
+		.div120 { grid-area: 10 / 12 / 11 / 13; } 
+		.div121 { grid-area: 11 / 1 / 12 / 2; } 
+		.div122 { grid-area: 11 / 2 / 12 / 3; } 
+		.div123 { grid-area: 11 / 3 / 12 / 4; } 
+		.div124 { grid-area: 11 / 4 / 12 / 5; } 
+		.div125 { grid-area: 11 / 5 / 12 / 6; } 
+		.div126 { grid-area: 11 / 6 / 12 / 7; } 
+		.div127 { grid-area: 11 / 7 / 12 / 8; } 
+		.div128 { grid-area: 11 / 8 / 12 / 9; } 
+		.div129 { grid-area: 11 / 9 / 12 / 10; } 
+		.div130 { grid-area: 11 / 10 / 12 / 11; } 
+		.div131 { grid-area: 11 / 11 / 12 / 12; } 
+		.div132 { grid-area: 11 / 12 / 12 / 13; } 
+		.div133 { grid-area: 12 / 1 / 13 / 2; } 
+		.div134 { grid-area: 12 / 2 / 13 / 3; } 
+		.div135 { grid-area: 12 / 3 / 13 / 4; } 
+		.div136 { grid-area: 12 / 4 / 13 / 5; } 
+		.div137 { grid-area: 12 / 5 / 13 / 6; } 
+		.div138 { grid-area: 12 / 6 / 13 / 7; } 
+		.div139 { grid-area: 12 / 7 / 13 / 8; } 
+		.div140 { grid-area: 12 / 8 / 13 / 9; } 
+		.div141 { grid-area: 12 / 9 / 13 / 10; } 
+		.div142 { grid-area: 12 / 10 / 13 / 11; } 
+		.div143 { grid-area: 12 / 11 / 13 / 12; } 
+		.div144 { grid-area: 12 / 12 / 13 / 13; } 
+
+
+		.but-cell {
+			background-color: rgb(255, 140, 87); /*rgb(253, 161, 161);*/
+			outline: 2px solid rgba(165, 42, 42, 0.644);
+			text-align: center;
+		}
+
+		.buttons { 
+			display: grid; 
+			grid-template-columns: repeat(5, 1fr); 
+			grid-template-rows: repeat(5, 1fr); 
+			grid-column-gap: 20px;
+			grid-row-gap: 20px;
+			padding: 10px;
+		}
+		.state {
+			grid-area: 4 / 1 / 6 / 6;
+			font-size: large;
+		} 
+		.pusk {
+			grid-area: 2 / 3 / 4 / 6;
+			font-size: xxx-large;
+			font-style:initial;
+			color: rgb(189, 0, 0);
+			cursor: pointer;
+		} 
+		.help {grid-area: 1 / 3 / 2 / 6;
+			color: rgb(189, 0, 0);
+			cursor: pointer;
+		} 
+		.stepsCount {
+			grid-area: 1 / 1 / 2 / 3;
+			color: rgb(189, 0, 0);
+		} 
+		.fliesCount {
+			grid-area: 2 / 1 / 3 / 3;
+			color: rgb(189, 0, 0);
+		} 
+		.lvl {
+			grid-area: 3 / 1 / 4 / 3;
+			color: rgb(189, 0, 0);
+		} 
+
+
+		.mini-buttons {
+			display: grid; 
+			grid-template-columns: repeat(3, 1fr); 
+			grid-template-rows: 1fr; 
+			grid-column-gap: 20px;
+			grid-row-gap: 0;
+			text-align: center;
+			height: 50px;
+			margin: 10px 10px 10px 20px;
+		}
+		.mini-button {
+			background-color: orange;
+			font-size: 40px;
+			color: brown;
+			border-radius: 50%;
+			cursor: pointer;
+			border: 2px solid rgba(165, 42, 42, 0.644);
+		}
+
+		.go    {
+			grid-area: 1 / 2 / 2 / 3;
+			padding-top: 5px;
+		}
+		.left  {grid-area: 1 / 1 / 2 / 2;}
+		.right {grid-area: 1 / 3 / 2 / 4;}
+
+
+
+
+
+
+
+		.modal {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 99;
+			height: 360px;
+			width: 100%;
+			max-width: 600px;
+			background-color: #FFF;
+			border-radius: 16px;
+			padding: 25px;
+
+			background-color: khaki;
+			border: 5px solid rgba(165, 42, 42, 0.644);
+		}
+
+		.fade-enter-active,
+		.fade-leave-active {
+			transition: opacity .5s;
+		}
+
+		.fade-enter,
+		.fade-leave-to {
+			opacity: 0;
+		}
+
+		.slide-enter-active,
+		.slide-leave-active {
+			transition: transform .5s;
+		}
+
+		.slide-enter,
+		.slide-leave-to {
+			transform: translateY(-50%) translateX(100vw);
+		}
+		.modal-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 98;
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+
+    </style>
+</head>
+<body>
+	<div class="parent" id="app">
+
+		
+		<div class="place place-parent" :style="'filter: blur('+showModal*5+'px);'">
+			<div v-for="i in 144" :class="'cell div'+i">
+				<img :style="style" v-if="position==i" style="margin-top: 5px;" src="photos/frog.svg" width="50px">
+				<img v-if="steps.indexOf(i)!=-1" style="margin-top: 15px;" src="photos/steps.png" width="30px">
+				<img v-if="flies.indexOf(i)!=-1" style="margin-top: 15px;" src="photos/fly.png" width="30px">
+			</div>
+		</div>
+
+		<div class="buttons" :style="'filter: blur('+showModal*5+'px);'">
+			<div class="but-cell state" :style="'background-color: '+stateBackground">
+				<div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%)"><b>Состояние:	</b>{{state}}</div>
+			</div> 
+			<div class="but-cell pusk" @click="run">Запуск</div> 
+			<div class="but-cell help" @click="showModal = !showModal">Правила игры</div> 
+			<div class="but-cell stepsCount">Кол-во шагов: {{stepsCount}}</div> 
+			<div class="but-cell fliesCount">Мух съедено: {{fliesCount-flies.length}}/{{fliesCount}}</div> 
+			<div class="but-cell lvl">Уровень: {{level}}</div> 
+		</div>
+
+		<div class="ide" :style="'filter: blur('+showModal*5+'px);'">
+			<div class="mini-buttons">
+				<div @click="left_btn" class="mini-button left">⟲</div>
+				<div @click="go_btn" class="mini-button go">↑</div>
+				<div @click="right_btn" class="mini-button right">⟳</div>
+			</div>
+			<textarea v-model="code" placeholder="Место для твоего кода" autofocus rows="10" cols="45" name="text"></textarea>
+		</div>
+
+
+
+
+		<transition name="slide" appear>
+			<div class="modal" v-if="showModal">
+				<div style="cursor: pointer; position: absolute; top: -10px; right: 10px; color: orangered; font-size: 60px;" @click="showModal = false">×</div>
+				<h1 style="color: rgb(126, 92, 0);">Правила игры:</h1>
+				<p style="color: rgb(126, 92, 0);">Всё очень просто! Тебе нужно будет помочь лягушке пообедать! <br>Эта лягушка питается летающими над прудом мухами, добраться до которых можно лишь одним способом - прыгая по кувшинкам.</p>
+				
+				<p style="color: rgb(126, 92, 0);">Движение лягушки описывается через язык программирования 'FROG',<br> в котором есть только две функции:<br>
+					<b style="font-size: x-large; color: rgb(204, 50, 50);">turn left/right</b> повернуть налево/направо
+					<br>и<br>
+					<b style="font-size: x-large; color: rgb(204, 50, 50);">go &laquo;число&raquo;</b> пропрыгать &laquo;число&raquo; кувшинок
+					<br>
+				</p>
+				<p style="color: rgb(126, 92, 0);">
+					Для упрощения написания кода можно воспользоваться стрелочками над текстовым полем<br>
+					Для запуска достаточно просто нажать кнопку 'Запуск'<br>
+					Состояние обработчика кода в голове лягушки описано в поле 'Состояние'
+				</p>
+			</div>
+		</transition>
+
+	</div>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script>
+		new Vue({
+		el:'#app',
+		data:{
+			showModal: true,
+			deltaTime: 5,
+			processing: false,
+			position: 144,
+			steps: [],
+			flies: [],
+			randomPlaces: [],
+			code: '',
+			commands: [],
+			rotation: 0,
+			shiftX: 0,
+			shiftY: 0,
+			direction: 'top',
+			stepsCount: 0,
+			fliesCount: 1,
+			state: 'ОК: Всё отлично!',
+			stateBackground: 'greenyellow',
+			level: 1,
+		},
+		methods: {
+			left_btn(){
+				this.code += 'turn left\n'
+			},
+			go_btn(){
+				if (isFinite(Number(this.code[this.code.length-2]))){
+					this.code = this.code.substring(0, this.code.length-2) + `${Number(this.code[this.code.length-2])+1}\n`
+				}
+				else{
+					this.code += 'go 1\n'
+				}
+			},
+			right_btn(){
+				this.code += 'turn right\n'
+			},
+			randomInteger() {
+				let min = 1
+				let max = 144
+  				return Math.floor(Math.random() * (max - min)) + min;
+			},
+			sleep(ms) {
+				return new Promise(resolve => setTimeout(resolve, ms));
+			},
+
+			async go(value){
+				if (this.processing == false) {return}
+
+				if (this.direction == 'top') {
+					for (let j = 0; j < value; j++) {
+						if ([1,2,3,4,5,6,7,8,9,10,11,12].indexOf(this.position)!=-1){
+							this.finish()
+							this.error("Лягушка не может выпрыгнуть за край болота!")
+							return
+						}
+						for (let i = 0; i > -65; i--) {
+							this.shiftX--
+							await this.sleep(this.deltaTime)
+						}
+						this.shiftX = 0
+						this.steps.push(this.position)
+						this.stepsCount++
+						if (this.steps.indexOf(this.position-12)!=-1){
+							this.steps.splice(this.steps.indexOf(this.position-12),1)
+						}
+						if (this.flies.indexOf(this.position-12)!=-1){
+							this.flies.splice(this.flies.indexOf(this.position-12),1)
+						}
+						this.position -= 12
+					}
+				}
+				else if (this.direction == 'bottom') {
+					for (let j = 0; j < value; j++) {
+						if ([133,134,135,136,137,138,139,140,141,142,143,144].indexOf(this.position)!=-1){
+							this.finish()
+							this.error("Лягушка не может выпрыгнуть за край болота!")
+							return
+						}
+						for (let i = 0; i < 65; i++) {
+							this.shiftX++
+							await this.sleep(this.deltaTime)
+						}
+						this.shiftX = 0
+						this.steps.push(this.position)
+						this.stepsCount++
+						if (this.steps.indexOf(this.position+12)!=-1){
+							this.steps.splice(this.steps.indexOf(this.position+12),1)
+						}
+						if (this.flies.indexOf(this.position+12)!=-1){
+							this.flies.splice(this.flies.indexOf(this.position+12),1)
+						}
+						this.position += 12
+					}
+				}
+				else if (this.direction == 'left') {
+					for (let j = 0; j < value; j++) {
+						if ([1,13,25,37,49,61,73,85,97,109,121,133].indexOf(this.position)!=-1){
+							this.finish()
+							this.error("Лягушка не может выпрыгнуть за край болота!")
+							return
+						}
+						for (let i = 0; i > -(window.innerWidth/18); i--) {
+							this.shiftY--
+							await this.sleep(this.deltaTime)
+						}
+						this.shiftY = 0
+						this.steps.push(this.position)
+						this.stepsCount++
+						if (this.steps.indexOf(this.position-1)!=-1){
+							this.steps.splice(this.steps.indexOf(this.position-1),1)
+						}
+						if (this.flies.indexOf(this.position-1)!=-1){
+							this.flies.splice(this.flies.indexOf(this.position-1),1)
+						}
+						this.position -= 1
+					}
+				}
+				else if (this.direction == 'right') {
+					for (let j = 0; j < value; j++) {
+						if ([12,24,36,48,60,72,84,96,18,120,132,144].indexOf(this.position)!=-1){
+							this.finish()
+							this.error("Лягушка не может выпрыгнуть за край болота!")
+							return
+						}
+						for (let i = 0; i < (window.innerWidth/18); i++) {
+							this.shiftY++
+							await this.sleep(this.deltaTime)
+						}
+						this.shiftY = 0
+						this.steps.push(this.position)
+						this.stepsCount++
+						if (this.steps.indexOf(this.position+1)!=-1){
+							this.steps.splice(this.steps.indexOf(this.position+1),1)
+						}
+						if (this.flies.indexOf(this.position+1)!=-1){
+							this.flies.splice(this.flies.indexOf(this.position+1),1)
+						}
+						this.position += 1
+					}
+				}
+			},
+
+			async turn(direct){
+				if (this.processing == false) {return}
+
+				if (this.direction == 'top') {
+					this.direction = direct
+				}
+				else if ((this.direction == 'left' && direct == 'left') || (this.direction == 'right' && direct == 'right')) {
+					this.direction = 'bottom'
+				}
+				else if ((this.direction == 'left' && direct == 'right') || (this.direction == 'right' && direct == 'left')) {
+					this.direction = 'top'
+				}
+				else if (this.direction == 'bottom' && direct == 'left') {
+					this.direction = 'right'
+				}
+				else if (this.direction == 'bottom' && direct == 'right') {
+					this.direction = 'left'
+				}
+
+				if (direct == 'left') {
+					for (let i = 0; i < 90; i++) {
+						this.rotation--
+						await this.sleep(this.deltaTime)
+					}
+				}
+				if (direct == 'right') {
+					for (let i = 0; i < 90; i++) {
+						this.rotation++
+						await this.sleep(this.deltaTime)
+					}
+				}
+			},
+
+			error(description){
+				this.state = `ERROR: ${description}`
+				this.stateBackground = 'red'
+			},
+
+			async finish(){
+				this.processing = false
+				if (this.flies.length == 0) {
+
+					this.stepsCount = 0
+					this.steps = []
+					this.position = 144
+					this.rotation = 0
+					this.direction = 'top'
+					this.stateBackground = 'yellow'
+					this.state = 'УРОВЕНЬ ПРОЙДЕН!!!'
+					this.code = ''
+
+					this.level++
+					if (this.level%3==0) { this.fliesCount++ }
+					
+					this.generateRandomPlaces()
+					
+					this.flies.splice(0,this.flies.length)
+					for(let i = 0; i < this.randomPlaces.length; i++) {
+						this.flies.push(this.randomPlaces[i])
+					}
+				}
+			},
+
+			async run(){
+				this.showModal = false
+				if (this.processing == true) {return}
+				this.processing = true
+				this.commands = this.code.split("\n")
+
+				this.flies.splice(0,this.flies.length)
+				for(let i = 0; i < this.randomPlaces.length; i++) {
+					this.flies.push(this.randomPlaces[i])
+				}
+				this.stepsCount = 0
+				this.steps = []
+				this.state = 'ОК: Всё отлично!'
+				this.position = 144
+				this.rotation = 0
+				this.direction = 'top'
+				this.stateBackground = 'greenyellow'
+				for (var i = 0; i < this.commands.length; i++) {
+					let command = this.commands[i].replace(/\s+/g, ' ').trim().split(' ')
+
+					if (this.commands[i] == '' || this.commands[i] == ' ') {
+						continue
+					}
+
+					if (command[0] != 'go' && command[0] != 'turn') {
+						this.error("Не существует такой функции как "+command[0]+'!')
+						this.finish()
+						return
+					}
+					else if (command.length != 2) {
+						this.error("Функция "+command[0]+" принимает на вход один параметр!")
+						this.finish()
+						return
+					}
+					await this.sleep(100)
+
+					if (command[0] == 'go') {
+						let num = command[1]
+						if (isFinite(+num) && Number(num) > 0) {
+							await this.go(Number(num))
+						}else{
+							this.error("Функция 'go' принимает на вход натуральное число!")
+							return
+						}
+					}
+					else if (command[0] == 'turn') {
+						let direct = command[1]
+						if (direct == 'left') { await this.turn('left') }
+						else if (direct == 'right') {await this.turn('right') }
+						else {
+							this.error("Функция 'turn' принимает на вход только 'left' или 'right'!")
+							this.finish()
+							return
+						}
+					}
+				}
+				this.finish()
+			},
+			generateRandomPlaces(){
+				this.randomPlaces = []
+				let randomPlace = this.randomInteger()
+				
+				for (let i = 0; i < this.fliesCount; i++) {
+					while (this.randomPlaces.indexOf(randomPlace)!=-1){
+						randomPlace = this.randomInteger()
+					}
+					
+					this.randomPlaces.push(randomPlace)
+				}
+				
+			}
+		},
+
+		computed: {
+			style () {
+				let rot = this.rotation - 15
+				return { 
+					transform: 'rotate(' + rot + 'deg)',
+					position: 'relative',
+					top: this.shiftX + 'px',
+					left: this.shiftY + 'px'
+				}
+			}
+		},
+		mounted() {
+			this.generateRandomPlaces()
+			for(let i = 0; i < this.randomPlaces.length; i++) {
+				this.flies.push(this.randomPlaces[i])
+			}
+			console.log(window.innerWidth)
+		},
+    })
+	</script>
+</body>
+</html>
