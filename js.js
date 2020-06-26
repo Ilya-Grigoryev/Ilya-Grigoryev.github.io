@@ -2,7 +2,7 @@ new Vue({
     el:'#app',
     data:{
         showModal: true,
-        deltaTime: 5,
+        deltaTime: 0, // 5
         processing: false,
         position: 144,
         steps: [],
@@ -19,6 +19,7 @@ new Vue({
         state: 'ОК: Всё отлично!',
         stateBackground: 'greenyellow',
         level: 1,
+        browser: '',
     },
     methods: {
         left_btn(){
@@ -293,6 +294,15 @@ new Vue({
         for(let i = 0; i < this.randomPlaces.length; i++) {
             this.flies.push(this.randomPlaces[i])
         }
-        console.log(window.innerWidth)
+        if (navigator.userAgent.search(/Safari/) > 0) {this.browser = 'Safari'};
+        if (navigator.userAgent.search(/Firefox/) > 0) {this.browser = 'MozillaFirefox'};
+        if (navigator.userAgent.search(/MSIE/) > 0 || navigator.userAgent.search(/NET CLR /) > 0) {this.browser = 'Internet Explorer'};
+        if (navigator.userAgent.search(/Chrome/) > 0) {this.browser = 'Google Chrome'};
+        if (navigator.userAgent.search(/YaBrowser/) > 0) {this.browser = 'Яндекс браузер'};
+        if (navigator.userAgent.search(/OPR/) > 0) {this.browser = 'Opera'};
+        if (navigator.userAgent.search(/Konqueror/) > 0) {this.browser = 'Konqueror'};
+        if (navigator.userAgent.search(/Iceweasel/) > 0) {this.browser = 'Debian Iceweasel'};
+        if (navigator.userAgent.search(/SeaMonkey/) > 0) {this.browser = 'SeaMonkey'};
+        if (navigator.userAgent.search(/Edge/) > 0) {this.browser = 'Microsoft Edge'};
     },
 })
