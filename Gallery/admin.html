@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель админа</title>
+    <style>
+
+        .frame{
+            display:inline-block;
+            width: 50%;
+        }
+        .cap {
+            display:flex;
+            max-width: 100%;
+            height: auto
+        }
+        .creater{
+            width: 380px;
+            background-color: rgb(255, 240, 171);
+            border: 5px solid rgb(189, 153, 38);
+            padding: 10px;
+        }
+        .photo-title{
+            width: 100%; 
+            height: 40px; 
+            font-size: xx-large; 
+            position: relative; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-25%);
+        }
+        .exit{
+            font-size: xx-large; 
+            position: relative; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-30%, -50%);
+            cursor: pointer;
+        }
+        .load-btn{
+            height: 50px;
+            width: 100%;
+            background-color: lightcoral;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="app" v-cloak>
+
+<div v-if="hash == '81dc9bdb52d04dc20036dbd8313ed055'"> <!-- 1234 -->
+
+    <header>
+        <h1>Панель администратора:</h1>
+        <br>
+        <div class="creater">
+            <h4>Название картины: </h4>
+            <input placeholder="Название" type="text" size="52" required v-model="pictureName">
+            <br>
+            <h4>Ссылка на картину:</h4>
+            <input placeholder="Ссылка" type="text" size="52" required v-model="pictureHref">
+            <br><br>
+            <div class="load-btn">
+                <div style="position: relative; top: 10%; left: 15%; font-size: xx-large;" @click="loadPicture">Загрузить картину</div>
+            </div>
+        </div>
+    </header>
+
+    <div v-for="(photo, index) in photos">
+        <div style="width: 400px; border: 5px solid rgb(255, 240, 171);">
+            <div class="cap">
+
+                <div class="frame photo-title">{{photo.title}}</div>
+
+                <div class="frame" style="width: 40px; height: 40px; background-color: red;" @click="del(index)">
+                    <div class="exit">X</div>
+                </div>
+
+            </div>
+            <img style="width: 400px;" :src="photo.url">
+        </div>
+        <br><br>
+    </div>
+
+</div>
+<div v-else>
+    <h1>Введите пароль:</h1><input type="text" v-model="password">
+    <br><br>
+    <button @click="md5">Войти</button>
+    <br><br>
+    <div v-if="tried!=0" style="padding: 10px; height: 20px; width: 160px; color: rgb(39, 10, 10); background-color: salmon; outline: 3px solid red;">НЕВЕРНЫЙ ПАРОЛЬ</div>
+</div>
+
+</div>
+
+</body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script type="text/javascript">
+	new Vue({
+		el:'#app',
+		data: {
+			photos: [],
+            pictureName: '',
+            pictureHref: '',
+            password: '',
+            hash: '',
+            tried: 0,
+		},
+		methods: {
+            del(index) {
+                this.photos.splice(index, 1)
+                axios.post('https://api.npoint.io/0e1c6662f95e7858fbca', this.photos)
+                .then(response => {
+                    return
+                });
+            },
+            md5(){
+                axios.get('https://api.hashify.net/hash/md5/hex?value='+this.password)
+                .then(response => {
+                    this.hash = response.data.Digest
+                    this.tried++
+                });
+            },
+            loadPicture(){
+                this.photos.push({"url": this.pictureHref, "title": this.pictureName})
+                axios.post('https://api.npoint.io/0e1c6662f95e7858fbca', this.photos)
+                .then(response => {
+                    this.pictureName = ''
+                    this.pictureHref = ''
+                });
+            }
+		},
+        computed: {
+        },
+		mounted() {
+            axios.get('https://api.npoint.io/0e1c6662f95e7858fbca')
+			.then(response => {
+				this.photos = response.data
+			});
+		}
+    })
+</script>
+</html>

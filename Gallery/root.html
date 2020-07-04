@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерея</title>
+    <style>
+
+    .menu {
+        display:flex;
+        max-width: 100%;
+        height: auto
+    }
+    .frame{
+        display:inline-block;
+        width: 50%;
+    }
+    .cap{
+        width: 100%;
+    }
+    .logo{
+        text-align: center;
+        width: 100%;
+    }
+    .langs{
+        text-align: left;
+        padding-left: 30px;
+        background-color: darkcyan;
+        width: 300px;
+    }
+    .button{
+        margin: 1em;
+        text-align: center;
+        border-radius: 10px;
+        background-color: rgb(255, 222, 38);
+        cursor: pointer;
+    }
+
+    .slider{
+        text-align: center;
+        height: 500px;
+        width: 500px;
+        outline: gray;
+        background-color: rgb(230, 238, 195);
+        position: relative;
+        left: 50%;
+        height: auto;
+        transform: translate(-50%);
+    }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="cap menu">
+        <div class="logo frame">
+            <img style="height: 100px; position: relative; top: 20%;" src="AnSo.png" alt="LOGO">
+        </div>
+        <div class="langs frame">
+            <h3>Языки:</h3>
+            <h5>Русский</h5>
+            <h5>Английский</h5>
+            <h5>Немецкий</h5>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="frame button" @click="tab = 'Главная'">Главная</div>
+        <div class="frame button" @click="tab = 'Галерея'">Галерея</div>
+        <div class="frame button" @click="tab = 'Соц. сети'">Соц. сети</div>
+    </div>
+
+    <div v-if="tab === 'Главная'">
+        <div class="slider">
+            <div style="position:absolute; top: 50%; left: 10px; cursor: pointer;" @click="left">left</div>
+            <div style="position:absolute; top: 50%; right: 10px; cursor: pointer;" @click="right">right</div>
+
+            <div class="slide" v-for="(photo, index) in photos">
+                <h2 v-if="num == index">{{photo.title}}</h2>
+                <img style="width:400px;" v-if="num == index" :src="photo.url">
+            </div>
+
+            <input v-for="(photo, index) in photos" type="radio" :value="index" v-model="num">
+        </div>
+    </div>
+
+    <div v-if="tab === 'Галерея'">
+        <div v-for="(photo, index) in photos">
+            <img :src="photo.url">
+        </div>
+    </div>
+
+    <div v-if="tab === 'Соц. сети'">
+        Соц. сети
+    </div>
+</div>
+</body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script type="text/javascript">
+	new Vue({
+		el:'#app',
+		data: {
+			photos: [],
+            num: 0,
+            tab: 'Главная',
+		},
+		methods: {
+			left(){
+                if(this.num!=0) this.num--
+                else this.num = this.photos.length-1
+            },
+            right(){
+                if(this.num!=this.photos.length-1) this.num++
+                else this.num = 0
+            }
+		},
+		mounted() {
+            axios.get('https://api.npoint.io/0e1c6662f95e7858fbca')
+			.then(response => {
+				this.photos = response.data
+			});
+		}
+    })
+</script>
+</html>
