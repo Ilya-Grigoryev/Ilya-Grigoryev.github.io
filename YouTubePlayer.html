@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Player</title>
+    <style>
+        .title {
+            text-align: center;
+            color: rgb(255, 0, 0);
+        }
+        .sub-title {
+            color: rgb(184, 78, 78);
+            
+        }
+        .comms {
+            margin-left: 30px;
+        }
+        h3 {
+            background-color: rgb(233, 208, 208);
+            color: rgb(240, 78, 78);
+            display: inline-block;
+            border: 1px solid red;
+            padding: 3px;
+        }
+        .command {
+            color: rgb(83, 83, 83);
+            border: 1px solid rgb(184, 78, 78);
+            margin-top: 5px;
+            padding-left: 5px;
+        }
+        .desc {
+            margin-left: 30px;
+            font-family: 'Arial', sans-serif;
+            color:rgb(95, 25, 25)
+        }
+        .desc-footer {
+            color: rgb(83, 83, 83);
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title"><u>YouTube Player</u></h1>
+
+    <h2 class="sub-title">Описание:</h2>
+     <div class="desc">
+        В вашем распоряжении абсолютно все видео с YouTube!
+        С <strong>YouTube Player</strong> вы можете вместе с друзьями прослушивать любимые песни или выступления комиков прямо в голосовом канале дискорда.
+        <br>Так же вы можете зациклисть очередь песен и крутить их до бесконечности!
+        Всё, что для нужно для получения всех видео с ютуба - пригласить <strong>YouTube Player</strong>
+         <a href="https://discord.com/oauth2/authorize?client_id=739500370258296933&permissions=3147840&scope=bot">на свой сервер по этой ссылке</a>!
+        <div class="desc-footer">
+           <br> --------------------------------------
+            <br>По всем техническим вопросам вы можете обратиться на <a href="https://discord.gg/wPEB2fb">сервер тех. поддержки</a>.
+        </div>
+     </div>
+
+    <h2 class="sub-title">Команды:</h2>
+    <div class="comms">
+        <div class="command">
+            <h3>!play &#60;song-name&#62;</h3>
+            <br>-> Начать проигрывание песни (при повторном запуске команды песня будет добавлена в очередь)
+        </div>
+        <div class="command">
+            <h3>!skip</h3>
+            <br>-> Пропустить песню (при наличии песен в очереди начнет проигрываться следующая)
+        </div>
+        <div class="command">
+            <h3>!stop</h3>
+            <br>-> Остановить проигрывание песен и очистить очередь
+        </div>
+        <div class="command">
+            <h3>!queue</h3>
+            <br>-> Просмотреть очередь песен
+        </div>
+        <div class="command">
+            <h3>!loop</h3>
+            <br>-> Включить/Выключить цикличный режим очереди
+        </div>
+        <div class="command">
+            <h3>!pause</h3>
+            <br>-> Поставить песню на паузу
+        </div>
+        <div class="command">
+            <h3>!resume</h3>
+            <br>-> Продолжить воспроизведение песни
+        </div>
+        <div class="command">
+            <h3>!change_prefix &#60;new-prefix&#62;</h3>
+            <br>-> Изменить текущий префикс
+        </div>
+    </div>
+</body>
+</html>
