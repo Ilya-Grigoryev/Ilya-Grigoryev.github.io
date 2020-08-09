@@ -28,6 +28,10 @@
             margin-top: 5px;
             padding-left: 5px;
         }
+        .sub-command {
+            color: rgb(124, 0, 0);
+            font-size: 20px;
+        }
         .desc {
             margin-left: 30px;
             font-family: 'Arial', sans-serif;
@@ -39,13 +43,14 @@
     </style>
 </head>
 <body>
+    <!--<iframe src="https://discordapp.com/widget?id=701726806377496587&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>-->
     <h1 class="title"><u>YouTube Player</u></h1>
 
     <h2 class="sub-title">Описание:</h2>
      <div class="desc">
         В вашем распоряжении абсолютно все видео с YouTube!
         С <strong>YouTube Player</strong> вы можете вместе с друзьями прослушивать любимые песни или выступления комиков прямо в голосовом канале дискорда.
-        <br>Так же вы можете зациклить очередь песен и крутить их до бесконечности!
+        <br>Так же вы можете зациклисть очередь песен и крутить их до бесконечности!
         Всё, что для нужно для получения всех видео с ютуба - пригласить <strong>YouTube Player</strong>
          <a href="https://discord.com/oauth2/authorize?client_id=739500370258296933&permissions=3147840&scope=bot">на свой сервер по этой ссылке</a>!
         <div class="desc-footer">
@@ -58,35 +63,44 @@
     <div class="comms">
         <div class="command">
             <h3>!play &#60;song-name&#62;</h3>
-            <br>-> Начать проигрывание песни (при повторном запуске команды песня будет добавлена в очередь)
+            <br><div class="sub-command">->  !p &#60;song-name&#62;</div><br>
+            Начать проигрывание песни (при повторном запуске команды песня будет добавлена в очередь)
+        </div>
+        <div class="command">
+            <h3>!search &#60;new-prefix&#62;</h3>
+            <br><div class="sub-command">->  !s &#60;song-name&#62;</div><br>
+            Поиск и проигрывание песни (аналогично play, но search выводит список, из которого нужно реакцией выбрать песню)
         </div>
         <div class="command">
             <h3>!skip</h3>
-            <br>-> Пропустить песню (при наличии песен в очереди начнет проигрываться следующая)
+            <br>Пропустить песню (при наличии песен в очереди начнет проигрываться следующая)
         </div>
         <div class="command">
             <h3>!stop</h3>
-            <br>-> Остановить проигрывание песен и очистить очередь
+            <br>Остановить проигрывание песен и очистить очередь
         </div>
         <div class="command">
             <h3>!queue</h3>
-            <br>-> Просмотреть очередь песен
+            <br><div class="sub-command">->  !q</div><br> 
+        Просмотреть очередь песен
         </div>
         <div class="command">
             <h3>!loop</h3>
-            <br>-> Включить/Выключить цикличный режим очереди
+            <br>Включить/Выключить цикличный режим очереди
         </div>
         <div class="command">
             <h3>!pause</h3>
-            <br>-> Поставить песню на паузу
+            <br><div class="sub-command">->  !pa</div> <br> 
+            Поставить песню на паузу
         </div>
         <div class="command">
             <h3>!resume</h3>
-            <br>-> Продолжить воспроизведение песни
+            <br><div class="sub-command">->  !re</div><br> 
+            Продолжить воспроизведение песни
         </div>
         <div class="command">
             <h3>!change_prefix &#60;new-prefix&#62;</h3>
-            <br>-> Изменить текущий префикс
+            <br>Изменить текущий префикс
         </div>
     </div>
 </body>
